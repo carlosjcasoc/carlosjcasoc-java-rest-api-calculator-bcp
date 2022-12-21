@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "66eb1110-0ec1-4be2-b2d5-06be2d3c8b5e",
+		"name": "API-THIRDPARTY-CURRENCY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EVALUACION CODIGO",
+			"item": [
+				{
+					"name": "all-change-rate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/all-change-rate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"all-change-rate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exchange-rate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/exchange-rate?originCurrency=PEN&finalCurrency=USD",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"exchange-rate"
+							],
+							"query": [
+								{
+									"key": "originCurrency",
+									"value": "PEN"
+								},
+								{
+									"key": "finalCurrency",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LOCAL_API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "OErqAKvh8bLyI0rEJtKp8EyFwNcAHgYk"
+					},
+					{
+						"key": "Cookie",
+						"value": "nspatoken=7e8c140541366987a355cc1c3dd7cf5300f1b9a8a471886f03835a8080dc6c0a"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/fixer/latest?base=PEN&symbols=USD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fixer",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "base",
+							"value": "PEN"
+						},
+						{
+							"key": "symbols",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EXTERNAL_API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apiKey",
+						"value": "OErqAKvh8bLyI0rEJtKp8EyFwNcAHgYk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.apilayer.com/fixer/latest?base=USD&symbols=EUR,PEN",
+					"protocol": "https",
+					"host": [
+						"api",
+						"apilayer",
+						"com"
+					],
+					"path": [
+						"fixer",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "base",
+							"value": "USD"
+						},
+						{
+							"key": "symbols",
+							"value": "EUR,PEN"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
