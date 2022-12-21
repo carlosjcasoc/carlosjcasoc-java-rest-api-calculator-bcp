@@ -4,6 +4,7 @@ import com.coralogix.calculator.model.ExchangeRate;
 import com.coralogix.calculator.repository.IExchangeRateDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
+@Slf4j
 public class ExchangeRateServiceImpl implements IExchangeRateService {
 
   @Autowired WebClient webClient;
@@ -29,6 +31,7 @@ public class ExchangeRateServiceImpl implements IExchangeRateService {
   public Mono<ExchangeRate> getExchangeRate(String originCurrency, String finalCurrency) {
     List<ExchangeRate> list =
         exchangeRateDao.findExchangeRateByCurrencyBaseAnfFinal(originCurrency, finalCurrency);
+    log.debug("INICIO DE LOGUEO METODO getExchangeRate");
 
     if (list != null && list.size() > 0) {
 
@@ -48,6 +51,7 @@ public class ExchangeRateServiceImpl implements IExchangeRateService {
             .bodyToMono(String.class)
             .flatMap(
                 r -> {
+                    log.debug("resultado del valor obtenido del servicio api-currency-thirdparty {}", r);
                   JSONObject json = new JSONObject(r);
                   String currency  = json.getJSONObject("rates").getBigDecimal(finalCurrency).toString();
                   return Mono.just(exchangeRateDao.save(

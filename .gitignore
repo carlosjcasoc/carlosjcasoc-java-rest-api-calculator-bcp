@@ -2,3 +2,5 @@
 .project
 .settings/
 target/
+.idea/compiler.xml
+logs/
